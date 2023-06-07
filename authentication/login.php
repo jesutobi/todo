@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION["user"])) {
-    header("Location:../index.php");
-}
+// session_start();
+// if (isset($_SESSION["user"])) {
+//     header("Location:../index.php");
+// }
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body class="relative bodydivide">
-   
+
     <div class="grid grid-cols-12 ">
         <div class="col-span-6">
             <?php include('authSlider.php') ?>
@@ -39,59 +39,60 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <!-- forms -->
                         <div class="px-10 py-5">
-                            <form action="../api//api-login-todo.php" method="POST">
-                                <!--first name -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Enter your email address</label>
-                                    </div>
-                                    <div>
-                                        <input type="email" placeholder="Email address" name="email" class="w-full text-sm p-3 rounded-md border ">
-                                    </div>
-                                    <!--email  error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["email_addressEr_login"]))
-                                                echo $_SESSION["errors"]["email_addressEr_login"];
-                                            ?>
-                                        </span>
-                                    </div>
+                            <!-- <form > -->
+                            <!--first name -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Enter your email address</label>
                                 </div>
+                                <div>
+                                    <input type="email" placeholder="Email address" id="email" name="email" class="w-full text-sm p-3 rounded-md border ">
+                                </div>
+                                <!--email  error -->
+                                <div>
+                                    <span id="emailerrorAlert">
 
-                                <!--password -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Enter your passsword</label>
-                                    </div>
-                                    <div>
-                                        <input type="password" class="w-full text-sm p-3 rounded-md border" value="" name="password" placeholder="password">
-                                    </div>
-                                    <!--password  error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["passwordEr_login"]))
-                                                echo $_SESSION["errors"]["passwordEr_login"];
-                                            ?>
-                                        </span>
-                                    </div>
+                                    </span>
                                 </div>
+                                <!-- <div>
+                                    <span id="emailsuccessAlert">
 
-                                <!-- register button -->
-                                <div class="flex justify-center my-3">
-                                    <button name="login" value="login" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
-                                        Login
-                                    </button>
+                                    </span>
+                                </div> -->
+                            </div>
+
+                            <!--password -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Enter your passsword</label>
                                 </div>
-                                <!-- login -->
-                                <div class="flex align-center text-xs justify-center">
-                                    <div>
-                                        <span>Don't have an account?</span>
-                                    </div>
-                                    <div class="px-1">
-                                        <a class="" href="register.php">Register</a>
-                                    </div>
+                                <div>
+                                    <input type="password" id="password" class="w-full text-sm p-3 rounded-md border" value="" name="password" placeholder="password">
                                 </div>
-                            </form>
+                                <!--password  error -->
+                                <div>
+                                    <span id="passworderrorAlert">
+
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- register button -->
+                            <div class="flex justify-center my-3">
+                                <button name="login" onclick="login()" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
+                                    Login
+                                </button>
+                            </div>
+                            <!-- login -->
+                            <div class="flex align-center text-xs justify-center">
+                                <div>
+                                    <span>Don't have an account?</span>
+                                </div>
+                                <div class="px-1">
+                                    <a class="" href="register.php">Register</a>
+                                </div>
+                            </div>
+                            <!-- </form> -->
                         </div>
                     </div>
 
@@ -100,6 +101,12 @@ if (isset($_SESSION["user"])) {
 
         </div>
     </div>
+    <!-- <script>
+        function login() {
+            alert('hello')
+        }
+    </script> -->
+    <script src="../js/login.js"></script>
 </body>
 
 </html>

@@ -6,16 +6,16 @@
 
  <div class="mt-5 p-2">
      <div class="grid  md:grid-cols-5 sm:grid-cols-6 gap-2">
-         <?php foreach ($_SESSION['todo_conv_result'] as $todo) : ?>
+        
              <!-- content-card -->
              <div class="shadow-md p-2 bg-slate-50  h-40 relative rounded-xl">
                  <!-- title -->
                  <div>
-                     <h3 class="font-semibold text-xl text-[#fbc72e]"><?php echo htmlspecialchars($todo['task']); ?></h3>
+                     <h3 class="font-semibold text-xl text-[#fbc72e]"></h3>
                  </div>
                  <!-- date -->
                  <div class="text-gray-500 py-1 text-xs">
-                     <span><?php echo htmlspecialchars($todo['task_date']) ?></span>
+                     <span></span>
                  </div>
 
                  <!-- content
@@ -29,7 +29,7 @@
                  <div class="absolute bottom-0">
                      <div class="flex justify-between  cursor-pointer my-2">
                          <div title="preview">
-                             <a href="previewPage.php?id=<?php echo $todo['id']; ?>">
+                             <a >
                                  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                      <path d="M9 12H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                      <path d="M9 15H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -40,7 +40,7 @@
                          <div class="flex ">
                              <!-- edit -->
                              <div class="px-1" title="edit">
-                                 <a href="update.php?id=<?php echo $todo['id']; ?>">
+                                 <a >
                                      <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                          <path d="M16.04 3.02001L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.2 16.44 12.79 16.14 13.1 15.84L20.98 7.96001C22.34 6.60001 22.98 5.02001 20.98 3.02001C18.98 1.02001 17.4 1.66001 16.04 3.02001Z" stroke="#292D32" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -50,7 +50,7 @@
                              </div>
                              <!-- delete-->
                              <div class="px-1" title="delete">
-                                 <a href="content.php?id=<?php echo $todo['id']; ?>">
+                                 <a >
                                      <svg width="21px" height="21px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M10 12V17" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                                          <path d="M14 12V17" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
@@ -67,6 +67,8 @@
                  </div>
 
              </div>
-         <?php endforeach; ?>
+        
      </div>
  </div>
+
+ <script src="js/content.js"></script>

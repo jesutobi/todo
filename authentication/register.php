@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION["user"])) {
-    header("Location:../index.php");
-}
+// session_start();
+// if (isset($_SESSION["user"])) {
+//     header("Location:../index.php");
+// }
 
 ?>
 <!DOCTYPE html>
@@ -17,11 +17,11 @@ if (isset($_SESSION["user"])) {
     <link rel="stylesheet" href="../main.css">
 </head>
 
-<body class="relative font1 bodydivide">
+<body onload="intialize()" class="relative font1 bodydivide">
     <div>
 
     </div>
-    
+
 
     <div class="grid grid-cols-12 ">
         <div class="col-span-6">
@@ -42,117 +42,104 @@ if (isset($_SESSION["user"])) {
                         </div>
                         <!-- forms -->
                         <div class="px-10 py-5">
-                            <form action="../api//api-registeration-todo.php" method="POST">
-                                <!--username -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Username</label>
-                                    </div>
-                                    <div>
-                                        <input type="text" placeholder="Enter your firstname" class="w-full text-sm p-3 rounded-md border " name="username">
-                                    </div>
-                                    <!--username  error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["usernameEr"]))
-                                                echo $_SESSION["errors"]["usernameEr"];
-                                            ?>
-                                        </span>
 
-
-                                    </div>
+                            <!--username -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Username</label>
                                 </div>
-
-                                <!--email address -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Email address</label>
-                                    </div>
-                                    <div>
-                                        <input type="email" placeholder="Enter your email@address" class="w-full text-sm p-3 rounded-md border" name="email">
-                                    </div>
-                                    <!-- email address error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["email_addressEr"])) {
-                                                echo $_SESSION["errors"]["email_addressEr"];
-                                            }
-                                            ?>
-                                            </ span>
-
-                                    </div>
+                                <div>
+                                    <input type="text" placeholder="Enter your firstname" class="w-full text-sm p-3 rounded-md border " id="username" name="username">
                                 </div>
+                                <!--username  error -->
+                                <div>
+                                    <span id="userNameAlert">
 
-                                <!--password -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Enter your passsword</label>
-                                    </div>
-                                    <div>
-                                        <input type="password" class="w-full text-sm p-3 rounded-md border" placeholder="password" name="password">
-                                    </div>
-                                    <!--password  error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["passwordEr"])) {
-                                                echo $_SESSION["errors"]["passwordEr"];
-                                            }
-                                            ?>
-                                        </span>
-
-                                    </div>
+                                    </span>
                                 </div>
+                            </div>
 
-                                <!-- confirm password -->
-                                <div class="py-3">
-                                    <div class="text-sm font-bold py-2">
-                                        <label for="">Confirm your passsword</label>
-                                    </div>
-                                    <div>
-                                        <input type="password" class="w-full text-sm p-3 rounded-md border" placeholder="confirm password" name="confirmPassword">
-                                    </div>
-                                    <!-- <!-confirm password  error -->
-                                    <div>
-                                        <span class="text-red-600 text-sm">
-                                            <?php if (isset($_SESSION["errors"]["passwordRepeatEr"])) {
-                                                echo $_SESSION["errors"]["passwordRepeatEr"];
-                                            }
-                                            ?>
-                                        </span>
-
-                                    </div>
+                            <!--email address -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Email address</label>
                                 </div>
-                                <!-- register button -->
-                                <div class="flex justify-center my-3">
-                                    <button name="submit" value="submit" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
-                                        Register
-                                    </button>
+                                <div>
+                                    <input type="email" placeholder="Enter your email@address" class="w-full text-sm p-3 rounded-md border" id="email" name="email">
+                                </div>
+                                <!-- email address error -->
+                                <div>
+                                    <span id="emailAlert">
+
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <!--password -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Enter your passsword</label>
+                                </div>
+                                <div>
+                                    <input type="password" class="w-full text-sm p-3 rounded-md border" placeholder="password" id="password" name="password">
+                                </div>
+                                <!--password  error -->
+                                <div>
+                                    <span id="passwordAlert">
+
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- confirm password -->
+                            <div class="py-3">
+                                <div class="text-sm font-bold py-2">
+                                    <label for="">Confirm your passsword</label>
+                                </div>
+                                <div>
+                                    <input type="password" class="w-full text-sm p-3 rounded-md border" id="confirmpassword" placeholder="confirm password" name="confirmPassword">
+                                </div>
+                                <!-- <!-confirm password  error -->
+                                <div>
+                                    <span id="confirmpasswordAlert">
+
+                                    </span>
 
 
                                 </div>
-                                <div class="text-center">
-                                    <!-- alert -->
-                                    <div class="px-1">
-                                        <span class="text-green-600 text-sm "><?php if (isset($_SESSION['success']['success_register'])) {
-                                                                                    echo $_SESSION['success']['success_register'];
-                                                                                } ?></span>
-                                    </div>
-                                    <div class="px-1">
-                                        <span class="text-red-600 text-sm "><?php if (isset($_SESSION['errors']['failed_register'])) {
-                                                                                echo $_SESSION['errors']['failed_register'];
+                            </div>
+                            <!-- register button -->
+                            <div class="flex justify-center my-3">
+                                <button onclick="submit()" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
+                                    Register
+                                </button>
+
+
+                            </div>
+                            <div class="text-center">
+                                <!-- alert -->
+                                <div class="px-1">
+                                    <span class="text-green-600 text-sm "><?php if (isset($_SESSION['success']['success_register'])) {
+                                                                                echo $_SESSION['success']['success_register'];
                                                                             } ?></span>
-                                    </div>
                                 </div>
-                                <!-- login -->
-                                <div class="flex align-center text-xs justify-center">
-                                    <div>
-                                        <span>Already have an account?</span>
-                                    </div>
-                                    <div class="px-1">
-                                        <a class="" href=" login.php">Login</a>
-                                    </div>
+                                <div class="px-1">
+                                    <span class="text-red-600 text-sm "><?php if (isset($_SESSION['errors']['failed_register'])) {
+                                                                            echo $_SESSION['errors']['failed_register'];
+                                                                        } ?></span>
                                 </div>
-                            </form>
+                            </div>
+                            <!-- login -->
+                            <div class="flex align-center text-xs justify-center">
+                                <div>
+                                    <span>Already have an account?</span>
+                                </div>
+                                <div class="px-1">
+                                    <a class="" href=" login.php">Login</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -161,6 +148,7 @@ if (isset($_SESSION["user"])) {
             </div>
         </div>
     </div>
+    <script src="../js//register.js"></script>
 </body>
 
 </html>

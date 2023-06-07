@@ -48,23 +48,19 @@
         </div>
 
     </div>
-    <form action="api/api-add-todo.php" method="POST" class="md:col-span-2    shadow-md px-5 py-5 rounded-lg  bg-slate-50">
+    <div class="md:col-span-2    shadow-md px-5 py-5 rounded-lg  bg-slate-50">
         <!-- title -->
         <div class="p-1">
             <div class="py-1">
                 <label for="" class="font-semibold text-black">Task title</label>
             </div>
             <div class="">
-                <input value="<?php if (isset($_SESSION["task"])) {
-                                    echo $_SESSION["task"];
-                                } ?>" name="task" class="border border-black-500 w-full rounded-md outline-1 outline-[#fbc72e] p-2 text-sm" placeholder="input the task">
+                <input type="text" name="todo_title" id="todo_title" name="task" class="border border-black-500 w-full rounded-md outline-1 outline-[#fbc72e] p-2 text-sm" name="todo_title" value="" placeholder="input the task">
             </div>
             <!-- error -->
             <div>
-                <span class="text-red-600 text-sm">
-                    <?php if (isset($_SESSION["errors"]['task'])) {
-                        echo $_SESSION["errors"]['task'];
-                    } ?>
+                <span class="titlealert">
+
                 </span>
 
             </div>
@@ -75,21 +71,19 @@
                 <label for="" class="font-semibold text-black">Description</label>
             </div>
             <div>
-                <textarea name="description" id="" cols="30" rows="3" class="border outline-1 outline-[#fbc72e] border-black-500 w-full rounded-md p-2 text-sm" placeholder="whats your plan"></textarea>
+                <textarea vlaue="" name="todo_decription" id="todo_decription" cols="30" rows="3" class="border outline-1 outline-[#fbc72e] border-black-500 w-full rounded-md p-2 text-sm" placeholder="whats your plan"></textarea>
 
             </div>
             <!-- error -->
             <div>
-                <span class="text-red-600 text-sm">
-                    <?php if (isset($_SESSION["errors"]['description'])) {
-                        echo $_SESSION["errors"]['description'];
-                    } ?>
-                </span>
+                <span class="descriptionalert">
 
+                </span>
             </div>
         </div>
         <div class="my-2 mx-1 float-right">
-            <button name="submit" value="submit" class="cursor-pointer px-3 py-2  bg-[#fbc72e] font-semibold text-black rounded-md">submit</button>
+            <button name="submitTodo" onclick="submitTodo()" class="cursor-pointer px-3 py-2  bg-[#fbc72e] font-semibold text-black rounded-md">submit</button>
         </div>
-    </form>
+    </div>
 </div>
+<script src="js/addTodo.js"></script>

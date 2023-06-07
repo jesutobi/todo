@@ -1,10 +1,10 @@
 <?php
 
 // Start the session
-session_start();
-if (!isset($_SESSION["user"])) {
-    header("./authentication/login.php");
-}
+// session_start();
+// if (!isset($_SESSION["user"])) {
+//     header("./authentication/login.php");
+// }
 
 
 ?>
@@ -57,7 +57,7 @@ if (!isset($_SESSION["user"])) {
 </head>
 
 <body class="bg-[#5d5398]">
-    
+
     <div class="container mx-auto">
         <!-- header -->
         <div class="mx-3 py-2">
@@ -82,7 +82,7 @@ if (!isset($_SESSION["user"])) {
 
     </div>
 
-
+    
 </body>
 
 </html>

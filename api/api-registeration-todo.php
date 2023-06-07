@@ -1,107 +1,143 @@
-
 <?php
 // Start the session
 session_start();
+header("Access-Control-Allow-Origin: * ");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+$data = json_decode(file_get_contents("php://input"));
+
+// if ($data->submit) {
+//     $res = "Hello it worked!";
+
+//     $response = array(
+//         'message' => $res,
+//         'result' => $data
+//     );
+
+//     echo json_encode($response);
+// }
 
 // connect to database
 include('../configure/db_connect.php');
-$_SESSION["username"] = $_SESSION["email_address"] = $_SESSION["password"] = $_SESSION["passwordRepeat"] = "";
+$username = $email_address = $password = $passwordRepeat = "";
 // error array
-$_SESSION["errors"] = array('usernameEr' => '', 'email_addressEr' => '', 'passwordEr' => '', 'passwordRepeatEr' => '', 'failed_register' => '');
-$_SESSION["success"] = array('usernamesu' => '', 'email_addresssu' => '', 'passwordsu' => '', 'passwordRepeatsu' => '', 'success_register' => '');
-// $_SESSION["success"] = array('success_register' => '');
-if (isset($_POST['submit'])) {
+$errors = array('usernameEr' => '', 'email_addressEr' => '', 'passwordEr' => '', 'passwordRepeatEr' => '', 'failed_register' => '');
+$success  = array('usernamesu' => '', 'email_addresssu' => '', 'passwordsu' => '', 'passwordRepeatsu' => '', 'success_register' => '');
+// $success"] = array('success_register' => '');
+if ($data->submit) {
 
     // email var
-    $email_sanitize = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-    $email_validate = $_POST["email"];
+    $email_sanitize = filter_var($data->email, FILTER_SANITIZE_EMAIL);
+    $email_validate = $data->email;
 
     // hash password
     // $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $password_hash = sha1($_POST["password"]);
+    $password_hash = sha1($data->password);
 
-    if (empty($_POST['username'])) {
-        $_SESSION["errors"]["usernameEr"] = "Enter your username";
-        header('Location:../../authentication/register.php');
+    if (empty($data->username)) {
+        $errors["usernameEr"] = "Enter your username ";
     } else {
-        $_SESSION["username"] = $_POST["username"];
-        $_SESSION["success"]["usernamesu"] = "Username is valid";
+        // $username = $data->username;
+        $success["usernamesu"] = "Username is valid";
     }
 
 
     // email validation
-    if (empty($_POST["email"])) {
-        $_SESSION["errors"]["email_addressEr"] = "Enter your email address";
-        header('Location:../../authentication/register.php');
+    if (empty($data->email)) {
+        $errors["email_addressEr"] = "Enter your email address";
     } else if (!filter_var($email_sanitize, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["errors"]["email_addressEr"] = "Enter a valid email address format";
-        header('Location:../../authentication/register.php');
+        $errors["email_addressEr"] = "Enter a valid email address format";
     } else {
-        $_SESSION["email_address"] = $email_sanitize;
-        $_SESSION["success"]["email_addresssu"] = "Email address is valid";
+        $email_address = $email_sanitize;
+        $success["email_addresssu"] = "Email address is valid";
     }
 
-
-    // password validation
-    if (strlen($_POST["password"]) < 8) {
-        $_SESSION["errors"]["passwordEr"] = "Password must be more than 8 character";
-        header('Location:../../authentication/register.php');
-    } else if (empty($_POST["password"])) {
-        $_SESSION["errors"]["passwordEr"] = "Enter your password";
-        header('Location:../../authentication/register.php');
-    } else {
-        $_SESSION["password"] = $_POST["password"];
-        $_SESSION["success"]["passwordsu"] = "Password is valid";
-    }
-
-
-    // confirm password
-    if ($_POST["password"] !== $_POST["confirmPassword"]) {
-        $_SESSION["errors"]["passwordRepeatEr"] = "Password does not match";
-        header('Location:../../authentication/register.php');
-    } else if (empty($_POST["confirmPassword"])) {
-
-        $_SESSION["errors"]["passwordRepeatEr"] = "Confirm your password";
-        header('Location:../../authentication/register.php');
-    } else {
-        $_SESSION["passwordRepeat"] = $_POST["confirmPassword"];
-        $_SESSION["success"]["passwordRepeatsu"] = "Password is valid";
-    }
 
     // to prevent replication of email
     // convert characters to string
-
     $sql_repeat = "SELECT * FROM users WHERE email = '$email_validate'";
     $result_repeat = mysqli_query($conn, $sql_repeat);
     $rowCount = mysqli_num_rows($result_repeat);
     if ($rowCount > 0) {
-        $_SESSION['errors']['email_addressEr'] = "Email already exists !";
-        header('Location:../../authentication/register.php');
+        $errors['email_addressEr'] = "Email already exists !";
+        // echo json_encode($errors);
     }
 
-    if (array_filter($_SESSION["errors"])) {
+
+    // password validation
+    if (strlen($data->password) < 8) {
+        $errors["passwordEr"] = "Password must be more than 8 character";
+    } else if (empty($data->password)) {
+        $errors["passwordEr"] = "Enter your password";
     } else {
-        // insert data from the form into the database
-        // to string
-        $username_to_db = mysqli_real_escape_string($conn, $_POST["username"]);
-        $email_to_db = mysqli_real_escape_string($conn, $email_sanitize);
-
-        // initialize statement to return object suitable for mysqli prepare
-        $sql_reg = "INSERT INTO users(username,email,password) VALUES('$username_to_db','$email_to_db','$password_hash')";
-        // prepare the statement for execution
-
-        if (mysqli_query($conn, $sql_reg)) {
-            // $_SESSION['success']['success_register'] = "Registration successful";
-           
-            header("Location:../../authentication/login.php");
+        $password = $data->password;
+        $success["passwordsu"] = "Password is valid";
+    }
 
 
-            // die();
-        } else {
-            echo "<script>alert('registration failed')</script>" . mysqli_error($conn);
-            // echo ;
-            // die();
+    // confirm password
+    if ($data->password !== $data->confirmpassword) {
+        $errors["passwordRepeatEr"] = "Password does not match";
+    } else if (empty($data->confirmpassword)) {
+
+        $errors["passwordRepeatEr"] = "Confirm your password";
+    } else {
+        $passwordRepeat = $data->confirmpassword;
+        $success["passwordRepeatsu"] = "Password is valid";
+    }
+
+    if ($errors['usernameEr'] != "" || $errors['email_addressEr'] != "" || $errors['passwordEr'] != "" || $errors['passwordRepeatEr'] != "") {
+        $errors['failed_register'] = 'registeration failed';
+        $data = array(
+            'status' => 422,
+            'message' => $errors['failed_register'],
+            'errors' => $errors
+
+
+        );
+        echo json_encode($data);
+    } else {
+        if ($success['usernamesu'] != "" || $success['email_addresssu'] != "" || $success['passwordsu'] != "" || $success['passwordRepeatsu'] != "") {
+            $success['success_register'] = 'registeration successful';
+            $datasuccess = array(
+                'status' => 422,
+                'message' => $success['success_register'],
+                'success' => $success
+
+
+            );
+            echo json_encode($datasuccess);
+            $usernameFromFront = $data->username;
+            $username_to_db = mysqli_real_escape_string($conn, $usernameFromFront);
+            $email_to_db = mysqli_real_escape_string($conn, $email_sanitize);
+
+            // initialize statement to return object suitable for mysqli prepare
+            $sql_reg = "INSERT INTO users(username,email,password) VALUES('$username_to_db','$email_to_db','$password_hash')";
+            // prepare the statement for execution
+
+            if (mysqli_query($conn, $sql_reg)) {
+                // $_SESSION['success']['success_register'] = "Registration successful";
+
+                // header("Location:../../authentication/login.php");
+
+                $response = array(
+                    'message' => 'it worked!',
+                    'result' => $data
+                );
+
+                // die();
+            } else {
+                echo "<script>alert('registration failed')</script>" . mysqli_error($conn);
+                // echo ;
+                // die();
+            }
         }
+        // echo json_encode($success);
+        // insert data from the form into the database
+        // to string$data->username
+       
     }
 }
