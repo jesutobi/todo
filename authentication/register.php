@@ -1,10 +1,3 @@
-<?php
-// session_start();
-// if (isset($_SESSION["user"])) {
-//     header("Location:../index.php");
-// }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,19 +10,14 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 
-<body onload="intialize()" class="relative font1 bodydivide">
-    <div>
-
-    </div>
-
-
-    <div class="grid grid-cols-12 ">
-        <div class="col-span-6">
+<body  class="relative bodydivide font1">
+    <div class="md:grid grid-cols-12 ">
+        <div class="col-span-6 max-[768px]:hidden">
             <?php include('authSlider.php') ?>
         </div>
         <div class="col-span-6 pt-8">
             <div class="">
-                <div class=" w-8/12   mx-auto  py-4  rounded-lg">
+                <div class="sm:w-8/12 mx-auto  py-4  rounded-lg">
                     <div class="">
                         <div class="text-center">
                             <!-- title -->
@@ -49,7 +37,7 @@
                                     <label for="">Username</label>
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Enter your firstname" class="w-full text-sm p-3 rounded-md border " id="username" name="username">
+                                    <input type="text" placeholder="Enter your firstname" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border " id="username" name="username">
                                 </div>
                                 <!--username  error -->
                                 <div>
@@ -65,7 +53,7 @@
                                     <label for="">Email address</label>
                                 </div>
                                 <div>
-                                    <input type="email" placeholder="Enter your email@address" class="w-full text-sm p-3 rounded-md border" id="email" name="email">
+                                    <input type="email" placeholder="Enter your email@address" class="w-full text-sm p-3 outline-1 outline-[#5d5398] rounded-md border" id="email" name="email">
                                 </div>
                                 <!-- email address error -->
                                 <div>
@@ -82,7 +70,7 @@
                                     <label for="">Enter your passsword</label>
                                 </div>
                                 <div>
-                                    <input type="password" class="w-full text-sm p-3 rounded-md border" placeholder="password" id="password" name="password">
+                                    <input type="password" class="w-full text-sm p-3 outline-1 outline-[#5d5398] rounded-md border" placeholder="password" id="password" name="password">
                                 </div>
                                 <!--password  error -->
                                 <div>
@@ -98,7 +86,7 @@
                                     <label for="">Confirm your passsword</label>
                                 </div>
                                 <div>
-                                    <input type="password" class="w-full text-sm p-3 rounded-md border" id="confirmpassword" placeholder="confirm password" name="confirmPassword">
+                                    <input type="password" class="w-full text-sm p-3 outline-1 outline-[#5d5398] rounded-md border" id="confirmpassword" placeholder="confirm password" name="confirmPassword">
                                 </div>
                                 <!-- <!-confirm password  error -->
                                 <div>
@@ -111,32 +99,20 @@
                             </div>
                             <!-- register button -->
                             <div class="flex justify-center my-3">
-                                <button onclick="submit()" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
+                                <button onclick="submit()" class="rounded-md hover:text-[#fbc72e] bg-[#5d5398] w-40  p-2 text-white font-bold">
                                     Register
                                 </button>
 
 
                             </div>
-                            <div class="text-center">
-                                <!-- alert -->
-                                <div class="px-1">
-                                    <span class="text-green-600 text-sm "><?php if (isset($_SESSION['success']['success_register'])) {
-                                                                                echo $_SESSION['success']['success_register'];
-                                                                            } ?></span>
-                                </div>
-                                <div class="px-1">
-                                    <span class="text-red-600 text-sm "><?php if (isset($_SESSION['errors']['failed_register'])) {
-                                                                            echo $_SESSION['errors']['failed_register'];
-                                                                        } ?></span>
-                                </div>
-                            </div>
+
                             <!-- login -->
                             <div class="flex align-center text-xs justify-center">
                                 <div>
                                     <span>Already have an account?</span>
                                 </div>
                                 <div class="px-1">
-                                    <a class="" href=" login.php">Login</a>
+                                    <a class="text-[#5d5398] font-semibold" href=" login.php">Login</a>
                                 </div>
                             </div>
 

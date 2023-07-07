@@ -67,27 +67,13 @@
                             <!--  -->
 
                         </div>
-                        <!-- username -->
-                        <div class="py-1">
-                            <div>
-                                <span class="text-xs font-semibold">Username</span>
-                            </div>
-                            <div>
-                                <span><?php echo $_SESSION['todo_user'] ?></span>
-                            </div>
-                        </div>
-                        <!-- email -->
-                        <div class="py-1">
-                            <div>
-                                <span class="text-xs font-semibold">Email</span>
-                            </div>
-                            <div>
-                                <span><?php echo $_SESSION['todo_email'] ?></span>
-                            </div>
+                        <!-- interpolation -->
+                        <div id="dropdown">
+
                         </div>
                         <!-- LOGOUT -->
                         <div>
-                            <a href="../todo/authentication/logout.php"><span class="font-bold"> Logout</span></a>
+                            <span onclick="logout()" class="font-bold hover:text-white"> Logout</span>
                         </div>
 
                     </div>
@@ -98,10 +84,9 @@
         </div>
 
     </div>
+    
 </body>
 
-<script>
 
-</script>
 
 </html>

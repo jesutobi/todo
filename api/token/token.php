@@ -30,5 +30,12 @@ function get_token($conn, $token)
 function remove_token($conn, $token)
 {
     // DELETE TOKEN
-
+    // SELECT TOKEN
+    // select from database
+    $sql_token_get = "DELETE FROM token_table WHERE token = '$token'";
+    if (mysqli_query($conn, $sql_token_get)) {
+        return  true;
+    } else {
+        return false;
+    }
 }

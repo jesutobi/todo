@@ -1,7 +1,3 @@
-<?php session_start();
-if (isset($_SESSION["user"])) {
-    header("Location:../index.php");
-}  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,44 +11,48 @@ if (isset($_SESSION["user"])) {
 
 <body class="bg-[#5d5398] relative">
     <div class="">
-        <div class="m-2 lg:flex justify-center ">
-            <form action="" method="POST" class="lg:w-1/2   md:absolute top-52 bottom-52    ">
-                <div class="bg-slate-50 shadow-md lg:p-5 p-2 rounded-lg h-72">
-                    <!-- title -->
-                    <div class="p-1">
-                        <div class="py-1">
-                            <label for="" class="font-semibold text-black">Task title</label>
-                        </div>
-                        <div class="">
-                            <input value="<?php if (isset($_SESSION['task'])) {
-                                                echo $_SESSION['task'];
-                                            }  ?>" name="task" class="border border-black-500 w-full rounded-md outline-1 outline-[#fbc72e] p-2 text-sm" placeholder="input the task">
-                        </div>
 
+        <div class="m-2 lg:flex justify-center ">
+
+            <div class="lg:w-1/2  md:absolute top-52 bottom-52" ">
+                <div class=" bg-slate-50 shadow-md lg:p-5 p-2 rounded-lg h-72">
+                <!-- title -->
+                <div class="p-1">
+                    <div class="py-1">
+                        <label for="" class="font-semibold text-black">Task title</label>
                     </div>
-                    <!-- content -->
-                    <div class="p-1">
-                        <div class="py-1">
-                            <label for="" class="font-semibold text-black">Description</label>
-                        </div>
-                        <div>
-                            <textarea name="description" id="" cols="30" rows="3" class="border outline-1 outline-[#fbc72e] border-black-500 w-full rounded-md p-2 text-sm" placeholder="whats your plan"><?php if (isset($_SESSION['task'])) {
-                                                                                                                                                                                                                echo $_SESSION['description'];
-                                                                                                                                                                                                            }  ?></textarea>
-                        </div>
+                    <div class="">
+                        <input type="text" value="" maxlength="10" id="title" name="task" class="border border-black-500 w-full rounded-md outline-1 outline-[#fbc72e] p-2 text-sm" placeholder="input the task">
                     </div>
-                    <div class="my-2 mx-1 float-right">
-                        <button name="submit" value="submit" class="cursor-pointer px-3 py-2  bg-[#fbc72e] font-semibold text-black rounded-md">update</button>
+
+                </div>
+                <!-- content -->
+                <div class="p-1">
+                    <div class="py-1">
+                        <label for="" class="font-semibold text-black">Description</label>
+                    </div>
+                    <div>
+                        <textarea type="text" name="description" value="" id="description" cols="30" rows="3" class="border outline-1 outline-[#fbc72e] border-black-500 w-full rounded-md p-2 text-sm" placeholder="whats your plan"></textarea>
                     </div>
                 </div>
-            </form>
+                <div class="my-2 mx-1 float-right">
+                    <button id="myButton" name="submitUpdate" onclick="submitUpdate()" class="cursor-pointer px-3 py-2  bg-[#fbc72e] font-semibold text-black rounded-md">update</button>
+                </div>
+            </div>
+
+
         </div>
+
+    </div>
 
     </div>
     <!-- go back button -->
     <div class="p-3">
         <?php include('./control/go_back.php') ?>
     </div>
+    <script src="js/update.js">
+
+    </script>
 </body>
 
 </html>

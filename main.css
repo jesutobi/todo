@@ -33,18 +33,20 @@
 .pokfontbold {
   font-family: "bold" !important;
 }
-/* fonts class */
-.bodydivide {
-  font-family: "Montserrat" !important;
-  /* width: 100%; */
-  /* height: 100vh; */
-  background: linear-gradient(
-    to right,
-    grey 0%,
-    grey 50%,
-    white 50%,
-    white 100%
-  );
+@media (min-width: 768px) {
+  /* fonts class */
+  .bodydivide {
+    font-family: "Montserrat" !important;
+    /* width: 100%; */
+    /* height: 100vh; */
+    background: linear-gradient(
+      to right,
+      grey 0%,
+      grey 50%,
+      white 50%,
+      white 100%
+    );
+  }
 }
 .font1 {
   font-family: "Montserrat" !important;

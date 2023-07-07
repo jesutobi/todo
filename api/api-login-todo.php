@@ -9,27 +9,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $data = json_decode(file_get_contents("php://input"));
 
-// $header = apache_request_headers();
-// $token = explode(' ', $header['Authorization']);
-// $token = $token[1];
-
-
-// $userdata = array(
-//     'token' => $token[1],
-// );
-// echo json_encode($userdata);
-
 
 // connect to database
 include('../configure/db_connect.php');
-
 include('../api/token/token.php');
-// verify token
-// $verify_token = get_token($conn, $token);
-// if($verify_token){
-
-//     // To anything here
-// }
 
 // error array
 $errorsLogin = array('email_addressEr_login' => '', 'passwordEr_login' => '',);
@@ -39,15 +22,18 @@ $user_from_db_password = '';
 if ($data->login) {
     $email_login = $data->email;
     $password_login = $data->password;
+    $emailPattern = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
 
-    // validation
-    if (empty($email_login)) {
-        $errorsLogin['email_addressEr_login'] =  "Enter your email address";
+    // validation email
+    if (empty($email_login) || preg_match($emailPattern, $email_login) == 0) {
+        $errorsLogin['email_addressEr_login'] =  "Email is invalid";
         $successLogin['email_addressSu_login'] = '';
-    } else if ($email_login !== "") {
+    } else if ($email_login !== "" && preg_match($emailPattern, $email_login) == 1) {
         $successLogin['email_addressSu_login'] = "Email valid";
         $errorsLogin['email_addressEr_login'] = '';
     }
+
+    // validation password
     if (empty($password_login)) {
         $errorsLogin['passwordEr_login'] =  "Enter your password";
         $successLogin['passwordEr_login'] = '';
@@ -60,11 +46,12 @@ if ($data->login) {
         $dataLoginError = array(
             'status' => 422,
             'message' => 'login failed',
-            'errors' => $errorsLogin
+            'errors' => $errorsLogin,
+            'success' => $successLogin
         );
         echo json_encode($dataLoginError);
         // } else if ($errorsLogin['email_addressEr_login'] = "" || $errorsLogin['passwordEr_login'] = "") {
-    } else {
+    } else if ($successLogin['email_addressSu_login'] != "" || $successLogin['passwordSu_login'] != "") {
         // select from database
         $sql_login = "SELECT * FROM users WHERE email = '$email_login'";
         $result_login = mysqli_query($conn, $sql_login);
@@ -75,6 +62,7 @@ if ($data->login) {
             $user_from_db_password = $user["password"];
             $user_from_db_email = $user["email"];
             $user_from_db_id = $user["id"];
+            $user_from_db_username = $user["username"];
 
             if (sha1($password_login) == $user_from_db_password && $email_login == $user_from_db_email) {
                 // Create token header as a JSON string
@@ -115,18 +103,14 @@ if ($data->login) {
                         'token' => $token,
                         'message' => 'successfully fetch user data',
                         'data' => $user,
-                        'id' => $user_from_db_id
+                        'username' => $user_from_db_username,
+                        'email' => $user_from_db_email,
+                        'id' => $user_from_db_id,
+                        'success' => $successLogin
+
                     );
                     echo json_encode($userdata);
                 }
-            } else {
-                $errorMsg = 'invalid email or password!';
-                $dataLoginError = array(
-                    'status' => 401,
-                    'message' => 'login failed',
-                    'errors' => $errorMsg
-                );
-                echo json_encode($dataLoginError);
             }
         }
     }

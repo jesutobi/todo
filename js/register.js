@@ -17,8 +17,6 @@ let success = {
   confirmpassword: "password is okay",
 };
 
-
-
 function submit() {
   fetch("../api/api-registeration-todo.php", {
     method: "POST",
@@ -34,83 +32,75 @@ function submit() {
     },
   }).then((response) => {
     response.json().then((json) => {
-      console.log(json);
+      // console.log(json);
       // console.log(json.success);
 
       // username*************
-      if (json.errors.usernameEr) {
-        document.querySelector("#userNameAlert").innerHTML =
-          json.errors.usernameEr;
-        document
-          .querySelector("#userNameAlert")
-          .setAttribute("class", "text-red-600 text-sm");
-      } else {
-        document.querySelector("#userNameAlert").innerHTML =
-          json.success.usernamesu;
-        document
-          .querySelector("#userNameAlert")
-          .setAttribute("class", "text-green-600 text-sm");
-      }
+      if (json.message) {
+        console.log(json.message);
+        if (json.errors.usernameEr) {
+          document.querySelector("#userNameAlert").innerHTML =
+            json.errors.usernameEr;
+          document
+            .querySelector("#userNameAlert")
+            .setAttribute("class", "text-red-600 text-sm");
+        } else {
+          document.querySelector("#userNameAlert").innerHTML =
+            json.success.usernamesu;
+          document
+            .querySelector("#userNameAlert")
+            .setAttribute("class", "text-green-600 text-sm");
+        }
 
-      // email ******************
-      if (json.errors.email_addressEr) {
-        document.querySelector("#emailAlert").innerHTML =
-          json.errors.email_addressEr;
-        document
-          .querySelector("#emailAlert")
-          .setAttribute("class", "text-red-600 text-sm");
-      } else if (json.success.usernamesu) {
-        document.querySelector("#emailAlert").innerHTML =
-          json.success.usernamesu;
-        document
-          .querySelector("#emailAlert")
-          .setAttribute("class", "text-green-600 text-sm");
-      }
+        // email ******************
+        if (json.errors.email_addressEr) {
+          document.querySelector("#emailAlert").innerHTML =
+            json.errors.email_addressEr;
+          document
+            .querySelector("#emailAlert")
+            .setAttribute("class", "text-red-600 text-sm");
+        } else if (json.success.email_addresssu) {
+          document.querySelector("#emailAlert").innerHTML =
+            json.success.email_addresssu;
+          document
+            .querySelector("#emailAlert")
+            .setAttribute("class", "text-green-600 text-sm");
+        }
 
-      // password ****************
-      if (json.errors.passwordEr) {
-        document.querySelector("#passwordAlert").innerHTML =
-          json.errors.passwordEr;
-        document
-          .querySelector("#passwordAlert")
-          .setAttribute("class", "text-red-600 text-sm");
-      } else if (json.success.passwordsu) {
-        document.querySelector("#passwordAlert").innerHTML =
-          json.success.passwordsu;
-        document
-          .querySelector("#passwordAlert")
-          .setAttribute("class", "text-green-600 text-sm");
-      }
+        // password ****************
+        if (json.errors.passwordEr) {
+          document.querySelector("#passwordAlert").innerHTML =
+            json.errors.passwordEr;
+          document
+            .querySelector("#passwordAlert")
+            .setAttribute("class", "text-red-600 text-sm");
+        } else if (json.success.passwordsu) {
+          document.querySelector("#passwordAlert").innerHTML =
+            json.success.passwordsu;
+          document
+            .querySelector("#passwordAlert")
+            .setAttribute("class", "text-green-600 text-sm");
+        }
 
-      // confirm password ****************
-      if (json.errors.passwordRepeatEr) {
-        document.querySelector("#confirmpasswordAlert").innerHTML =
-          json.errors.passwordRepeatEr;
-        document
-          .querySelector("#confirmpasswordAlert")
-          .setAttribute("class", "text-red-600 text-sm");
-      } else if (json.success.passwordRepeatsu) {
-        document.querySelector("#confirmpasswordAlert").innerHTML =
-          json.success.passwordRepeatsu;
-        document
-          .querySelector("#confirmpasswordAlert")
-          .setAttribute("class", "text-green-600 text-sm");
+        // confirm password ****************
+        if (json.errors.passwordRepeatEr) {
+          document.querySelector("#confirmpasswordAlert").innerHTML =
+            json.errors.passwordRepeatEr;
+          document
+            .querySelector("#confirmpasswordAlert")
+            .setAttribute("class", "text-red-600 text-sm");
+        } else if (json.success.passwordRepeatsu) {
+          document.querySelector("#confirmpasswordAlert").innerHTML =
+            json.success.passwordRepeatsu;
+          document
+            .querySelector("#confirmpasswordAlert")
+            .setAttribute("class", "text-green-600 text-sm");
+        }
       }
-
-      // email
-      // if (json.passwordEr) {
-      //   document.querySelector("#emailAlert").innerHTML =
-      //     json.email_addressEr;
-      //   document
-      //     .querySelector("#emailAlert")
-      //     .setAttribute("class", "text-red-600 text-sm");
-      // } else {
-      //   document.querySelector("#emailAlert").innerHTML =
-      //     json.email_addresssu;
-      //   document
-      //     .querySelector("#emailAlert")
-      //     .setAttribute("class", "text-green-600 text-sm");
-      // }
+      if (json.success != "") {
+        alert("Registeration successful");
+        location.assign("http://localhost/todo/authentication/login.php");
+      }
     });
   });
 }

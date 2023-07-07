@@ -1,10 +1,3 @@
-<?php
-// session_start();
-// if (isset($_SESSION["user"])) {
-//     header("Location:../index.php");
-// }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +10,16 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 
-<body class="relative bodydivide">
+<body class="relative bodydivide font1">
 
-    <div class="grid grid-cols-12 ">
-        <div class="col-span-6">
+    <div class="md:grid grid-cols-12 ">
+        <div class="col-span-6 max-[768px]:hidden">
             <?php include('authSlider.php') ?>
 
         </div>
         <div class="col-span-6 py-20">
             <div class="">
-                <div class="  w-8/12   mx-auto  py-7  rounded-lg">
+                <div class="  sm:w-8/12   mx-auto  py-7  rounded-lg">
                     <div class="">
                         <div class="text-center">
                             <!-- title -->
@@ -46,7 +39,7 @@
                                     <label for="">Enter your email address</label>
                                 </div>
                                 <div>
-                                    <input type="email" placeholder="Email address" id="email" name="email" class="w-full text-sm p-3 rounded-md border ">
+                                    <input type="email" placeholder="Email address" id="email" name="email" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border ">
                                 </div>
                                 <!--email  error -->
                                 <div>
@@ -54,11 +47,11 @@
 
                                     </span>
                                 </div>
-                                <!-- <div>
+                                <div>
                                     <span id="emailsuccessAlert">
 
                                     </span>
-                                </div> -->
+                                </div>
                             </div>
 
                             <!--password -->
@@ -67,7 +60,7 @@
                                     <label for="">Enter your passsword</label>
                                 </div>
                                 <div>
-                                    <input type="password" id="password" class="w-full text-sm p-3 rounded-md border" value="" name="password" placeholder="password">
+                                    <input type="password" id="password" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border" value="" name="password" placeholder="password">
                                 </div>
                                 <!--password  error -->
                                 <div>
@@ -75,11 +68,17 @@
 
                                     </span>
                                 </div>
+                                <!--success -->
+                                <div>
+                                    <span id="passwordSu_login">
+
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- register button -->
                             <div class="flex justify-center my-3">
-                                <button name="login" onclick="login()" class="rounded-md bg-[#5d5398] w-40  p-2 text-white font-bold">
+                                <button name="login" onclick="login()" class="rounded-md bg-[#5d5398] w-40 hover:text-[#fbc72e]  p-2 text-white font-bold">
                                     Login
                                 </button>
                             </div>
@@ -88,8 +87,8 @@
                                 <div>
                                     <span>Don't have an account?</span>
                                 </div>
-                                <div class="px-1">
-                                    <a class="" href="register.php">Register</a>
+                                <div class="px-1 ">
+                                    <a href="register.php" class="text-[#5d5398] font-semibold">Register</a>
                                 </div>
                             </div>
                             <!-- </form> -->

@@ -1,21 +1,33 @@
 <?php
-// Start the session
-session_start();
 // connect to database
-include('configure/db_connect.php');
+include('../configure/db_connect.php');
+include('../api/token/token.php');
 
+$data_content = json_decode(file_get_contents("php://input"));
+$todo_id = $data_content->todoId;
+// echo $user_id ;
+
+$header = apache_request_headers();
+$token = explode(' ', $header['Authorization']);
+$token = $token[1];
+$verify_token = get_token($conn, $token);
 // delete to do
-if (isset($_GET['id'])) {
-    $_SESSION['delete_id'] = $_GET['id'];
-    // convert characters to string
-    $conv_to_string = mysqli_real_escape_string($conn, $_SESSION['delete_id']);
-    // construct the query
-    $delete_todo = "DELETE FROM todolist WHERE id = $conv_to_string ";
-    // GET THE Query result
-    if (mysqli_query($conn, $_SESSION['delete_todo'])) {
+if ($verify_token) {
+    // escape special characters
+    $todo_details = mysqli_real_escape_string($conn, $todo_id);
 
-        header('Location:index.php');
-    } else {
-        echo 'query error:' . mysqli_error($conn);
+    // construct the query
+    $delete_todo = "DELETE FROM todolist WHERE id = $todo_details ";
+    // get query result
+    $sql_todo_delete_result = mysqli_query($conn, $delete_todo);
+    // convert result to array
+    // $sql_todo_details_array = mysqli_fetch_assoc($sql_todo_details_result);
+    // echo $sql_todo_details_array;
+    if ($sql_todo_delete_result) {
+        $response = array(
+            // 'data' => $sql_todo_details_array,
+            'message' => 'deleted successfully '
+        );
+        echo json_encode($response);
     }
 }

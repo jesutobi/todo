@@ -1,13 +1,3 @@
-<?php
-
-// Start the session
-// session_start();
-// if (!isset($_SESSION["user"])) {
-//     header("./authentication/login.php");
-// }
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +72,7 @@
 
     </div>
 
-    
+
 </body>
 
 </html>
