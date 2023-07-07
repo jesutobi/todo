@@ -1,3 +1,10 @@
+// fetch api
+const token = localStorage.getItem("token");
+if (token) {
+  // Redirect to login page or display an error message
+  window.location.href = "http://localhost/todo";
+}
+
 // function intialize() {}
 let username = document.querySelector("#username");
 let email = document.querySelector("#email");
