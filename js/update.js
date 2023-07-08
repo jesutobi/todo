@@ -3,7 +3,7 @@ const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
 if (!token) {
   // Redirect to login page or display an error message
-  window.location.href = "http://localhost/todo/authentication/login.php";
+  window.location.href = "/todo/authentication/login.php";
 }
 // initiallizing the variable
 const todoDetails = "";
@@ -70,7 +70,7 @@ function submitUpdate() {
   }).then((response) => {
     response.json().then((json) => {
       if (json.message) {
-        location.assign("http://localhost/todo");
+        location.assign("/todo");
       }
     });
   });

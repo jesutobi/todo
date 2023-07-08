@@ -2,7 +2,7 @@
 const token = localStorage.getItem("token");
 if (token) {
   // Redirect to login page or display an error message
-  window.location.href = "http://localhost/todo";
+  window.location.href = "/todo";
 }
 
 // function intialize() {}
@@ -48,12 +48,15 @@ function submit() {
         if (json.errors.usernameEr) {
           document.querySelector("#userNameAlert").innerHTML =
             json.errors.usernameEr;
+          document.querySelector("#userNameAlert").style.fontSize = "0.7rem";
+
           document
             .querySelector("#userNameAlert")
             .setAttribute("class", "text-red-600 text-sm");
         } else {
           document.querySelector("#userNameAlert").innerHTML =
             json.success.usernamesu;
+          document.querySelector("#userNameAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#userNameAlert")
             .setAttribute("class", "text-green-600 text-sm");
@@ -63,12 +66,14 @@ function submit() {
         if (json.errors.email_addressEr) {
           document.querySelector("#emailAlert").innerHTML =
             json.errors.email_addressEr;
+          document.querySelector("#emailAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#emailAlert")
             .setAttribute("class", "text-red-600 text-sm");
         } else if (json.success.email_addresssu) {
           document.querySelector("#emailAlert").innerHTML =
             json.success.email_addresssu;
+          document.querySelector("#emailAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#emailAlert")
             .setAttribute("class", "text-green-600 text-sm");
@@ -78,12 +83,14 @@ function submit() {
         if (json.errors.passwordEr) {
           document.querySelector("#passwordAlert").innerHTML =
             json.errors.passwordEr;
+          document.querySelector("#passwordAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#passwordAlert")
             .setAttribute("class", "text-red-600 text-sm");
         } else if (json.success.passwordsu) {
           document.querySelector("#passwordAlert").innerHTML =
             json.success.passwordsu;
+          document.querySelector("#passwordAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#passwordAlert")
             .setAttribute("class", "text-green-600 text-sm");
@@ -93,20 +100,24 @@ function submit() {
         if (json.errors.passwordRepeatEr) {
           document.querySelector("#confirmpasswordAlert").innerHTML =
             json.errors.passwordRepeatEr;
+          document.querySelector("#confirmpasswordAlert").style.fontSize =
+            "0.7rem";
           document
             .querySelector("#confirmpasswordAlert")
             .setAttribute("class", "text-red-600 text-sm");
         } else if (json.success.passwordRepeatsu) {
           document.querySelector("#confirmpasswordAlert").innerHTML =
             json.success.passwordRepeatsu;
+          document.querySelector("#confirmpasswordAlert").style.fontSize =
+            "0.7rem";
           document
             .querySelector("#confirmpasswordAlert")
             .setAttribute("class", "text-green-600 text-sm");
         }
       }
-      if (json.success != "") {
+      if (json.status == 200) {
         alert("Registeration successful");
-        location.assign("http://localhost/todo/authentication/login.php");
+        location.assign("/todo/authentication/login.php");
       }
     });
   });

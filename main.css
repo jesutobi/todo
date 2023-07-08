@@ -51,3 +51,8 @@
 .font1 {
   font-family: "Montserrat" !important;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

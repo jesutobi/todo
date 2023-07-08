@@ -19,36 +19,36 @@
         </div>
         <div class="col-span-6 py-20">
             <div class="">
-                <div class="  sm:w-8/12   mx-auto  py-7  rounded-lg">
+                <div class=" w-full  sm:w-8/12   sm:mx-auto  py-7  rounded-lg">
                     <div class="">
                         <div class="text-center">
                             <!-- title -->
                             <div class="pt-3">
-                                <h4 class="font-bold text-lg ">Login into your account</h4>
+                                <span class="font-bold text-base ">Login into your account</span>
                             </div>
                             <div class="text-sm">
                                 <span>Its free and easy</span>
                             </div>
                         </div>
                         <!-- forms -->
-                        <div class="px-10 py-5">
+                        <div class=" px-4 sm:px-10 py-5">
                             <!-- <form > -->
                             <!--first name -->
                             <div class="py-3">
                                 <div class="text-sm font-bold py-2">
                                     <label for="">Enter your email address</label>
                                 </div>
-                                <div>
+                                <div class="w-full">
                                     <input type="email" placeholder="Email address" id="email" name="email" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border ">
                                 </div>
                                 <!--email  error -->
-                                <div>
-                                    <span id="emailerrorAlert">
+                                <div class="text-xs sm:text-sm">
+                                    <span id="emailerrorAlert" class="py-2">
 
                                     </span>
                                 </div>
-                                <div>
-                                    <span id="emailsuccessAlert">
+                                <div class="text-xs sm:text-sm">
+                                    <span id="emailsuccessAlert" class="py-2">
 
                                     </span>
                                 </div>
@@ -63,14 +63,14 @@
                                     <input type="password" id="password" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border" value="" name="password" placeholder="password">
                                 </div>
                                 <!--password  error -->
-                                <div>
-                                    <span id="passworderrorAlert">
+                                <div class="text-xs sm:text-sm">
+                                    <span id="passworderrorAlert" class="py-2">
 
                                     </span>
                                 </div>
                                 <!--success -->
-                                <div>
-                                    <span id="passwordSu_login">
+                                <div class="text-xs sm:text-sm">
+                                    <span id="passwordSu_login" class="py-2">
 
                                     </span>
                                 </div>

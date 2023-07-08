@@ -50,19 +50,19 @@
 
     <div class="container mx-auto">
         <!-- header -->
-        <div class="mx-3 py-2">
+        <div class="mx-3">
             <?php include('./nav/header.php') ?>
         </div>
 
-        <div class="mx-3 ">
+        <div class="mx-3">
             <?php
             include('form_hero.php')
             ?>
         </div>
 
         <!-- title -->
-        <div class="p-2 mx-3 mt-8 text-white">
-            <h1 class="text-lg md:text-3xl">To-do List</h1>
+        <div class=" mx-3 mt-12 text-white font-semibold  ">
+            <span class="sm:text-base p-2 txt-sm text-white  bg-[#fbc72e]">To-do List</span>
         </div>
         <div class="mx-3">
             <?php

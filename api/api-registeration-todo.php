@@ -90,7 +90,7 @@ if ($data->submit) {
         if ($success['usernamesu'] != "" || $success['email_addresssu'] != "" || $success['passwordsu'] != "" || $success['passwordRepeatsu'] != "") {
             $success['success_register'] = 'registeration successful';
             $datasuccess = array(
-                'status' => 422,
+                'status' => 200,
                 'messagesu' => $success['success_register'],
                 'success' => $success
 

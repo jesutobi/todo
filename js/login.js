@@ -24,7 +24,7 @@ function login() {
         localStorage.setItem("userId", json.id);
         localStorage.setItem("email", json.email);
         localStorage.setItem("username", json.username);
-        location.assign("http://localhost/todo");
+        location.assign("/todo");
       }
       if (json.success != "") {
         // variable
@@ -34,6 +34,7 @@ function login() {
         // email validation
         document.querySelector("#emailsuccessAlert").innerHTML = emailSuccess;
         document.querySelector("#emailerrorAlert").innerHTML = "";
+        document.querySelector("#emailsuccessAlert").style.fontSize = "0.7rem";
         document
           .querySelector("#emailsuccessAlert")
           .setAttribute("class", "text-green-600 text-sm");
@@ -41,6 +42,7 @@ function login() {
         // password validation
         document.querySelector("#passwordSu_login").innerHTML = passwordSuccess;
         document.querySelector("#passworderrorAlert").innerHTML = "";
+        document.querySelector("#passwordSu_login").style.fontSize = "0.7rem";
         document
           .querySelector("#passwordSu_login")
           .setAttribute("class", "text-green-600 text-sm");
@@ -53,6 +55,7 @@ function login() {
         if (emailerr) {
           document.querySelector("#emailerrorAlert").innerHTML = emailerr;
           document.querySelector("#emailsuccessAlert").innerHTML = "";
+          document.querySelector("#emailerrorAlert").style.fontSize = "0.7rem";
           document
             .querySelector("#emailerrorAlert")
             .setAttribute("class", "text-red-600 text-sm");
@@ -60,6 +63,8 @@ function login() {
         if (passworderr) {
           document.querySelector("#passworderrorAlert").innerHTML = passworderr;
           document.querySelector("#passwordSu_login").innerHTML = "";
+          document.querySelector("#passworderrorAlert").style.fontSize =
+            "0.7rem";
           document
             .querySelector("#passworderrorAlert")
             .setAttribute("class", "text-red-600 text-sm");

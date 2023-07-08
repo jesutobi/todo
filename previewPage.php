@@ -42,23 +42,17 @@
     </style>
 </head>
 
-<body class=" bg-[#5d5398] ">
-    <div class="container mx-auto ">
-
-        <!-- content -->
-        <div class="">
-            <div class=" m-3 flex justify-center   ">
-                <div class="w-full ">
-                    <div class="px-5 py-3 rounded-lg   shadow-md bg-white" id="detailsContainer">
-                    </div>
-                </div>
+<body class=" bg-[#5d5398] relative">
+    <div class=" absolute top-[7rem] sm:top-[10rem] bottom-0 left-0 right-0  flex justify-center">
+        <div class="m-5   sm:w-5/12">
+            <div class="px-5 py-3 rounded-lg   shadow-md bg-white" id="detailsContainer">
             </div>
-        </div>
-        <!-- go back button -->
-        <div class=" ">
-            <?php include('./control/go_back.php') ?>
-        </div>
+            <!-- go back button -->
+            <div class=" my-4">
+                <?php include('./control/go_back.php') ?>
+            </div>
 
+        </div>
     </div>
     <script src="js/preview.js">
 

@@ -1,7 +1,7 @@
 const token = localStorage.getItem("token");
 if (!token) {
   // Redirect to login page or display an error message
-  window.location.href = "http://localhost/todo/authentication/login.php";
+  window.location.href = "/todo/authentication/login.php";
 }
 console.log(token);
 const todoDetails = "";
@@ -35,7 +35,7 @@ function fetchContent() {
         const todoDetailsHtml = `
 
                         <!-- title of task -->
-                        <div class="text-4xl text-[#fbc72e]">
+                        <div class="text-3xl text-[#fbc72e]">
                             <h1>${todoDetails.task}</h1>
 
                         </div>
@@ -52,9 +52,8 @@ function fetchContent() {
                         </div>
 
                         <!-- description -->
-                        <div>
+                        <div class="text-sm leading-relaxed ">
                             <p>${todoDetails.descriptions}</p>
-
                         </div>
                         `;
         document.getElementById("detailsContainer").innerHTML = todoDetailsHtml;

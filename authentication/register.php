@@ -10,38 +10,38 @@
     <link rel="stylesheet" href="../main.css">
 </head>
 
-<body  class="relative bodydivide font1">
+<body class="relative bodydivide font1">
     <div class="md:grid grid-cols-12 ">
         <div class="col-span-6 max-[768px]:hidden">
             <?php include('authSlider.php') ?>
         </div>
         <div class="col-span-6 pt-8">
             <div class="">
-                <div class="sm:w-8/12 mx-auto  py-4  rounded-lg">
+                <div class="w-full sm:w-8/12 mx-auto  py-4  rounded-lg">
                     <div class="">
                         <div class="text-center">
                             <!-- title -->
                             <div class="pt-3">
-                                <h4 class="font-bold text-lg">Create your account</h4>
+                                <h4 class="font-bold text-base">Create your account</h4>
                             </div>
                             <div class="text-sm">
                                 <span>Its free and easy</span>
                             </div>
                         </div>
                         <!-- forms -->
-                        <div class="px-10 py-5">
+                        <div class="px-4 sm:px-10 py-5">
 
                             <!--username -->
                             <div class="py-3">
-                                <div class="text-sm font-bold py-2">
-                                    <label for="">Username</label>
+                                <div class=" font-bold py-2">
+                                    <label for="" class="text-sm">Username</label>
                                 </div>
                                 <div>
                                     <input type="text" placeholder="Enter your firstname" class="w-full outline-1 outline-[#5d5398] text-sm p-3 rounded-md border " id="username" name="username">
                                 </div>
                                 <!--username  error -->
                                 <div>
-                                    <span id="userNameAlert">
+                                    <span class="text-[0.1rem]  py-2" id="userNameAlert">
 
                                     </span>
                                 </div>
@@ -57,7 +57,7 @@
                                 </div>
                                 <!-- email address error -->
                                 <div>
-                                    <span id="emailAlert">
+                                    <span id="emailAlert" class="text-xs sm:text-sm py-2">
 
                                     </span>
 
@@ -74,7 +74,7 @@
                                 </div>
                                 <!--password  error -->
                                 <div>
-                                    <span id="passwordAlert">
+                                    <span id="passwordAlert" class="text-xs sm:text-sm py-2">
 
                                     </span>
                                 </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <!-- <!-confirm password  error -->
                                 <div>
-                                    <span id="confirmpasswordAlert">
+                                    <span id="confirmpasswordAlert" class="text-xs sm:text-sm py-2">
 
                                     </span>
 
